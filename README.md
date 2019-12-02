@@ -10,13 +10,14 @@ Install
 
 `npm ci`
 
+`npm run build`
 
 
 Create new credentials (signup)
 
-`npx ts-node src/index.ts -c signup -u <username> -p <password>`
+`npm start -- -c signup -u <username> -p <password>`
 
 
 Check credentials (login)
 
-`npx ts-node src/index.ts -c login -u <username> -p <password>`
+`npm start -- -c login -u <username> -p <password>`

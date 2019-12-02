@@ -1,6 +1,6 @@
 import { Credentials } from "./credentials";
-import * as low from 'lowdb';
-import * as FileSync from 'lowdb/adapters/FileSync';
+import low from 'lowdb';
+import FileSync from 'lowdb/adapters/FileSync';
 import { CollectionChain } from "lodash";
 
 export interface IStore {

@@ -1,0 +1,21 @@
+{
+    "compilerOptions": {
+        "outDir": "./build",
+        "allowJs": false,
+        "target": "es6",
+        "module": "commonjs",
+        "resolveJsonModule": true,
+        "esModuleInterop": true,
+        "moduleResolution": "node",
+        "rootDir": "./src",
+        "listEmittedFiles": true,
+        "sourceMap": true,
+        "strict": true,
+    },
+    "exclude": [
+        "node_modules"
+    ],
+    "include": [
+        "**/*.ts"
+    ]
+}
