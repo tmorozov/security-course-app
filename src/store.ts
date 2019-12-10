@@ -5,7 +5,7 @@ import { CollectionChain } from "lodash";
 
 export interface IStore {
     add(credentials: Credentials): void,
-    has(credentials: Credentials): boolean
+    getByUsername(username: string): Credentials | undefined;
 }
 
 const COLLECTION_NAME = 'credentials';
@@ -19,28 +19,22 @@ export class Store implements IStore {
         this.collection = db.get(COLLECTION_NAME) as CollectionChain<any>;
     }
     add(credentials: Credentials) {
-        if (this.doesKeyExist('username', credentials.username)) {
+        if (!!this.getByUsername(credentials.username)) {
             throw new Error(`Already exists ${credentials.username}`);
         }
         this.collection
             .push({ 
                 username: credentials.username,
-                passwordHash: credentials.password.hash
+                hash: credentials.hash,
+                salt: credentials.salt
             })
             .write()
     }
-    has(credentials: Credentials): boolean {
-        const raw = this.collection.find({ 
-            username: credentials.username,
-            passwordHash: credentials.password.hash
-         })
-        .value()
-        return !!raw;
-    }
-    private doesKeyExist(key: string, value: any) {
-        return !! this.collection.find({ 
-            [key]: value,
-         })
-        .value()
+    getByUsername(username: string) {
+        const value = this.collection.find({ username }).value();
+
+        if (value) {
+            return Credentials.fromStore(value.username, value.hash, value.salt)
+        }
     }
 }
