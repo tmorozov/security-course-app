@@ -21,3 +21,13 @@ Create new credentials (signup)
 Check credentials (login)
 
 `npm start -- -c login -u <username> -p <password>`
+
+
+Store message (use quotes "" for message with spaces)
+
+`npm start -- -c save -u <username> -p <password> -m <message>`
+
+
+Load message
+
+`npm start -- -c load -u <username> -p <password>`

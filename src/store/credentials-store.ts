@@ -1,22 +1,19 @@
-import { Credentials } from "./credentials";
+import { Credentials } from "../models/credentials";
 import low from 'lowdb';
 import FileSync from 'lowdb/adapters/FileSync';
 import { CollectionChain } from "lodash";
+import { Db } from "./db";
 
-export interface IStore {
+export interface ICredentialsStore {
     add(credentials: Credentials): void,
     getByUsername(username: string): Credentials | undefined;
 }
 
 const COLLECTION_NAME = 'credentials';
-export class Store implements IStore {
+export class CredentialsStore implements ICredentialsStore {
     private collection: CollectionChain<any>;
-    constructor(dbPath: string) {
-        const adapter = new FileSync(dbPath);
-        const db = low(adapter);
-
-        db.defaults({ [COLLECTION_NAME]: []}).write();
-        this.collection = db.get(COLLECTION_NAME) as CollectionChain<any>;
+    constructor(db: Db) {
+        this.collection = db.getCollection(COLLECTION_NAME);
     }
     add(credentials: Credentials) {
         if (!!this.getByUsername(credentials.username)) {
