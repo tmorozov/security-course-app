@@ -24,7 +24,8 @@ export class MessagesStore implements IMessagesStore {
         .push({
             username,
             iv: message.iv,
-            encryptedData: message.encryptedData
+            encryptedData: message.encryptedData,
+            salt: message.salt
         })
         .write();
     }
@@ -32,7 +33,7 @@ export class MessagesStore implements IMessagesStore {
         const value = this.collection.find({username}).value();
 
         if (value) {
-            return Message.fromStore(value.iv, value.encryptedData)
+            return Message.fromStore(value.iv, value.encryptedData, value.salt);
         }
     }
 }
