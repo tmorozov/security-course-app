@@ -1,5 +1,5 @@
 const crypto = require('crypto');
-const ALGORITHM = 'aes-256-cbc';
+const ALGORITHM = 'aes-256-cbc-hmac-sha1';
 
 export class Message {
     private constructor(private _iv: string, private _encryptedData: string, private _salt: string) {}
