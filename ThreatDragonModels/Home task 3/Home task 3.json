@@ -1,0 +1,17 @@
+{
+  "summary": {
+    "title": "Home task 3",
+    "owner": "Tymur"
+  },
+  "detail": {
+    "contributors": [],
+    "diagrams": [
+      {
+        "title": "DFD1",
+        "thumbnail": "./public/content/images/thumbnail.jpg",
+        "id": 0
+      }
+    ],
+    "reviewer": "Tymur"
+  }
+}
